@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency</title>
+    <!-- Include your other stylesheets or scripts here -->
+    <script>
+      // Fetch the data from the Restcountries API
+      fetch('https://restcountries.com/v3.1/all')
+        .then((response) => response.json())
+        .then((data) => {
+          // Filter countries where USD is an official currency
+          const usdCountries = data.filter(
+            (country) =>
+              country.currencies?.USD?.name === "United States dollar"
+          );
+
+          // Extract country names
+          const countryNames = usdCountries.map((country) => country.name);
+
+          // Print the country names
+          var text = document.getElementById("text");
+          text.innerHTML += country.name.common + " , " + country.currencies;
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    </script>
+  </head>
+  <body>
+    <!-- Your HTML content goes here -->
+    <h1 id="text"></h1>
+  </body>
+</html>

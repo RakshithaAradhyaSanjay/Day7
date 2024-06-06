@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Details</title>
+    <!-- Include your other stylesheets or scripts here -->
+    <script>
+      fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((data) => {
+          // Filter the data by the region property
+          const flagsContainer = document.getElementById("flags");
+          data.forEach((country) => {
+            var text = document.getElementById("text");
+            const img = document.createElement("img");
+            img.src = country.flags.png;
+            img.alt = "Flag of " + country.name.common;
+            // flagsContainer.appendChild(img);
+            text.innerHTML +=
+              "Country Name :" +
+              country.name.common +
+              " , " +
+              "Country Capital : " +
+              country.capital +
+              ","              
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <!-- Your HTML content goes here -->
+    <h1 id="text"></h1>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Population Countries</title>
+    <!-- Include your other stylesheets or scripts here -->
+    <script>
+      fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    // Filter the data by the region property
+    let smallPopulationCountries = data.filter((country) => country.population < 200000);
+
+    smallPopulationCountries.forEach(country => {
+      
+        var text = document.getElementById("text");
+        text.innerHTML += country.name.common + " , ";      
+       
+      });
+
+    
+  });
+  
+    </script>
+</head>
+<body>
+    <!-- Your HTML content goes here -->
+    <h1 id="text"></h1>
+</body>
+</html>
